@@ -1,0 +1,9 @@
+{
+  "type": "module",
+  "scripts": {
+    "day1-1": "node AOC2023-1/day1-1.mjs",
+    "day1-2": "node AOC2023-1/day1-2.mjs",
+    "day2-1": "node AOC2023-2/day2-1.mjs",
+    "day2-2": "node AOC2023-2/day2-2.mjs"
+  }
+}
