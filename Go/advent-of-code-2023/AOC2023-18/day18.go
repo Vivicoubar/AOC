@@ -124,7 +124,7 @@ func P2(input string) int {
 }
 
 func calcPolyVolume(points []Pos) int {
-	//Shoelace formula
+	//Pick formula
 	var volume = 0
 	for i := 0; i < len(points)-1; i++ {
 		var point = points[i]
