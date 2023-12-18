@@ -118,13 +118,13 @@ func P2(input string) int {
 	for _, move := range moves {
 		border += move.value
 	}
-	//Half of the border is counted in the interior
+	//(PICK'S THEOREM)
 	var p2 = interior + border/2 + 1
 	return p2
 }
 
 func calcPolyVolume(points []Pos) int {
-	//Pick formula
+	//Shoelace formula
 	var volume = 0
 	for i := 0; i < len(points)-1; i++ {
 		var point = points[i]
