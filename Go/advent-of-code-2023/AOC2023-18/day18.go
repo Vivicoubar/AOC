@@ -113,13 +113,13 @@ func P2(input string) int {
 		newPoint = Pos{row + directionVec.row*move.value, col + directionVec.col*move.value}
 		points = append(points, newPoint)
 	}
-	var interior = calcPolyVolume(points)
+	var area = calcPolyVolume(points)
 	var border = 0
 	for _, move := range moves {
 		border += move.value
 	}
 	//(PICK'S THEOREM)
-	var p2 = interior + border/2 + 1
+	var p2 = area + border/2 + 1
 	return p2
 }
 
