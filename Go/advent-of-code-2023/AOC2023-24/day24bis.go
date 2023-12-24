@@ -36,8 +36,17 @@ func positionThrowObliterate(hailStones []P2HailStone) int {
 	// and every hailstone i has pos pi and vel vi
 	// then p0 + t[i]*v0 == p[i] + t[i]*v[i]
 	// which is equivalent to p0 - p[i] == t[i]*(v[i] - v0)
-	// so we have 3 equations for each stone
-	// we can write the system as
+	// We can nullify using cross product of (vi - v0), and obtain matrix:
+
+	// 0             | v₁ᶻ - v₀ᶻ       | v₀ʸ - v₁ʸ    | 0                        | 0           | (p₁ᶻ - p₀ᶻ) - (p₀ʸ - p₁ʸ)
+	// -(v₁ᶻ - v₀ᶻ)   | 0              | v₀ˣ - v₁ˣ    | (p₀ᶻ - p₁ᶻ) + (p₁ˣ - p₀ˣ) | 0           | 0
+	// v₁ʸ - v₀ʸ     | -(v₀ˣ - v₁ˣ)   | 0            | (p₁ʸ - p₀ʸ) + (p₀ˣ - p₁ˣ) | 0           | 0
+	// 0             | v₂ᶻ - v₀ᶻ       | v₀ʸ - v₂ʸ    | 0                         | 0           | (p₂ᶻ - p₀ᶻ) - (p₀ʸ - p₂ʸ)
+	// -(v₂ᶻ - v₀ᶻ)   | 0              | v₀ˣ - v₂ˣ    | (p₀ᶻ - p₂ᶻ) + (p₂ˣ - p₀ˣ)  | 0           | 0
+	// v₂ʸ - v₀ʸ     | -(v₀ˣ - v₂ˣ)   | 0            | (p₂ʸ - p₀ʸ) + (p₀ˣ - p₂ˣ) | 0           | 0
+
+	// We solve Ax = b, where A is the matrix, x is the vector of the time at which the stones will be aligned
+	// and b is the vector of the difference of the position of the stones at time 0
 
 	setMatrixValue(0, 1, float64(stones[0].Velocity[2]-stones[1].Velocity[2]))
 	setMatrixValue(0, 2, float64(stones[1].Velocity[1]-stones[0].Velocity[1]))
@@ -69,6 +78,19 @@ func positionThrowObliterate(hailStones []P2HailStone) int {
 	setMatrixValue(5, 3, float64(stones[2].Position[1]-stones[0].Position[1]))
 	setMatrixValue(5, 4, float64(stones[0].Position[0]-stones[2].Position[0]))
 
+	//Independent coefficients (only depends of the inital positions and velocity of stones) are:
+	// p1y*v1z - v1y*p1z
+	// p2y*v2z - v2y*p2z
+	// p3y*v3z - v3y*p3z
+
+	// p1z*v1x - v1z*p1x
+	// p2z*v2x - v2z*p2x
+	// p3z*v3x - v3z*p3x
+
+	// p1x*v1y - v1x*p1y
+	// p2x*v2y - v2x*p2y
+	// p3x*v3y - v3x*p3y
+
 	indepX0 := float64(stones[0].Position[1]*stones[0].Velocity[2] - stones[0].Velocity[1]*stones[0].Position[2])
 	indepX1 := float64(stones[1].Position[1]*stones[1].Velocity[2] - stones[1].Velocity[1]*stones[1].Position[2])
 	indepX2 := float64(stones[2].Position[1]*stones[2].Velocity[2] - stones[2].Velocity[1]*stones[2].Position[2])
@@ -81,6 +103,7 @@ func positionThrowObliterate(hailStones []P2HailStone) int {
 	indepZ1 := float64(stones[1].Position[0]*stones[1].Velocity[1] - stones[1].Velocity[0]*stones[1].Position[1])
 	indepZ2 := float64(stones[2].Position[0]*stones[2].Velocity[1] - stones[2].Velocity[0]*stones[2].Position[1])
 
+	//Vecteur B
 	vector[0] = indepX0 - indepX1
 	vector[1] = indepY0 - indepY1
 	vector[2] = indepZ0 - indepZ1
