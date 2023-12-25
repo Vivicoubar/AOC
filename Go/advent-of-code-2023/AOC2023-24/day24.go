@@ -15,7 +15,9 @@ type HailStone struct {
 
 func main() {
 	var input string = "AOC2023-24/input1.txt"
-	fmt.Println(P1(input))
+	var ex string = "AOC2023-24/ex.txt"
+	fmt.Println(P1(ex, 7, 27))
+	fmt.Println(P1(input, 2e14, 4e14))
 	fmt.Println(P2(input))
 }
 
@@ -51,11 +53,11 @@ func getHailStone(line string) []HailStone {
 	return stones
 }
 
-func P1(input string) int {
+func P1(input string, minVal float64, maxVal float64) int {
 
 	var stones []HailStone = getHailStone(input)
-	var marginBottom float64 = 2e14
-	var marginTop float64 = 4e14
+	var marginBottom float64 = minVal
+	var marginTop float64 = maxVal
 	var p1 = 0
 
 	//Linear system is:
