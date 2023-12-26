@@ -103,3 +103,25 @@ $$\color{black}{[}\color{blue}{* 1875}\color{black}{][}\color{gold}{**} {525}\co
 ## Day 20: Pulse Propagation
 $$\color{black}{[}\color{blue}{* 1144}\color{black}{][}\color{gold}{**} {685}\color{black}{]}$$
 **Description**: Learned my lesson with day8, used PPCM way earlier (but it still doesn't work in general). Parsing took ages.
+
+## Day 21: Step Counter
+$$\color{black}{[}\color{blue}{* 3451}\color{black}{][}\color{gold}{**} {2566}\color{black}{]}$$
+**Description**: End of my streak, the hardest challenge of the year. I took 1 hour to see that the input is in fact a piece of pavement, and another hour to figure that the start point is always on an empty row and an empty col (all of that while chatting with my research project manager). Then, I understood that we can decompose any position by X*Dimension of input + offset (with a little discord help) depending of where it heads to. Took me 5hours in total, but i'm very proud of it.
+
+## Day 22: Sand Slabs
+$$\color{black}{[}\color{blue}{* 2210}\color{black}{][}\color{gold}{**} {2079}\color{black}{]}$$
+**Description**: Still a bit difficult for me, i misunderstood the problem at first (swapped Y and Z axis). Then i managed to find a solution that was nearly the answer for both parts, by calculing the number of falling for each brick i would disintegrate.
+
+## Day 23 A Long Walk: 
+$$\color{black}{[}\color{blue}{* 2554}\color{black}{][}\color{gold}{**} {1146}\color{black}{]}$$
+**Description**: I did a bit better this time: my solution for Part1 was again nearly solution for my Part2, but i broke my code a few time before succeeding. I use a DFS algorithm in a graph containing only the intersection.
+
+## Day 24 Never Tell Me The Odds: 
+$$\color{black}{[}\color{blue}{* 2215}\color{black}{][}\color{gold}{**} {958}\color{black}{]}$$
+**Description**: Used Z3 package in python to be efficient. Then proceeded to lose 2 hours trying to install it on windows for go, then forfeited and found another solution in 3 hours. I make a linear problem which I solve using Gaussian Elimination
+
+## Day 25 Snowverload:
+$$\color{black}{[}\color{blue}{* 734}\color{black}{][}\color{gold}{**} {631}\color{black}{]}$$
+**Description**: Last problem, i was efficient: Considering a source node , I used 4 BFS for other each node: 3 first to cut the paths with the source, 4th to try to reach the source: If its possible, they are in the same group, if not, there aren't in the same group.  
+
+
